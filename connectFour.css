@@ -13,6 +13,14 @@
   margin: auto;
   background: yellow;
   border-radius: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+.gameTile {
+  width: 13%;
+  height: 16%;
+  border: 1px black solid;
 }
 button {
   background: white;
