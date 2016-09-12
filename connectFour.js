@@ -8,15 +8,21 @@ $(function () {
   gameTile();
   //create 7*6 gameboard
 
-  var clicked = true;
+  var clicked = false;
   if (clicked === false) {
     $('.gameTile').on('click', function() {
       $(this).addClass('clickedRed');
+
+      console.log('now red');
+      //test
     })
     clicked = true;
   } else if (clicked === true) {
     $('.gameTile').on('click', function() {
       $(this).addClass('clickedBlack');
+      
+      console.log('now black');
+      //test
     })
     clicked = false;
   }
