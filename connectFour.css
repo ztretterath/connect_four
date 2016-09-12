@@ -14,3 +14,8 @@
   background: yellow;
   border-radius: 10px;
 }
+button {
+  background: white;
+  display: inline-flex;
+  justify-content: center;
+}
