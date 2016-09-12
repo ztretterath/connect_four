@@ -8,12 +8,23 @@ $(function () {
   gameTile();
   //create 7*6 gameboard
 
-  $('.gameTile').on('click', function() {
-    console.log('I work');
-    //test
-
-    $(this).addClass('clickedWhite');
-  })
+  var clicked = true;
+  if (clicked === false) {
+    $('.gameTile').on('click', function() {
+      $(this).addClass('clickedRed');
+    })
+    clicked = true;
+  } else if (clicked === true) {
+    $('.gameTile').on('click', function() {
+      $(this).addClass('clickedBlack');
+    })
+    clicked = false;
+  }
+  // $('.gameTile').on('click', function() {
+  //   console.log('I work');
+  //   //test
+  //   $(this).addClass('clickedRed');
+  // })
   //change color of gameTile
 
 }) //end onload

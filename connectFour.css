@@ -1,3 +1,6 @@
+body {
+  background: black;
+}
 .header {
   background: rgba(70, 83, 87, 0.90);
   width: 70vw;
@@ -8,20 +11,27 @@
   padding: 10px;
 }
 .board {
-  height: 70vh;
-  width : 90vw;
+  height: 500px;
+  width : 600px;
   margin: auto;
-  background: yellow;
-  border: 3px blue solid;
+  background: black;
+  border: 3px white solid;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;;
 }
 .gameTile {
-  width: 14%;
-  height: 16%;
-  border: 1px blue solid;
+  width: 13%;
+  height: 15%;
+  border: 1px white solid;
+  border-radius: 70px;
+}
+.clickedWhite {
+  background: white;
+}
+.clickedGray {
+  background: rgba(70, 83, 87, 0.90)
 }
 button {
   background: white;
