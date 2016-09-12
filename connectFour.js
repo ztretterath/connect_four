@@ -4,5 +4,7 @@ $(function () {
       var tile = $("<div class='gameTile'></div>")
       $('.board').append(tile);
     }
-  } //end gameTile  
+  } //end gameTile
+
+  gameTile();
 }) //end onload
