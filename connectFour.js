@@ -10,15 +10,15 @@ $(function () {
   gameTile();
   //create 7*6 gameboard
 
-  var checkRow = function() {
-    for (var i = 0; i < 42; i++) {
-      var redCount = 0;
-      var checkId = $(this).attr('id');
-      if (this.class() === 'clickedRed') {
-
-      }
-    }
-  } //end checkRow method
+  // var checkRow = function() {
+  //   for (var i = 0; i < 42; i++) {
+  //     var redCount = 0;
+  //     var checkId = $(this).attr('id');
+  //     if (this.class() === 'clickedRed') {
+  //
+  //     }
+  //   }
+  // } //end checkRow method
 
   var clicked = true;
   $('.gameTile').on('click', function() {
@@ -35,6 +35,17 @@ $(function () {
 
   $('#reset').on('click', function() {
     $('.gameTile').removeClass('clickedRed clickedBlack');
+  }) //reset button
+
+  var directions = false;
+  $('#directions').on('hover', function() {
+    if (clicked === false) {
+      clicked = true;
+      $('.header').html("<h1 id='title'>Connect Four</h1><ul><li>Red player has first move</li><li>Click empty space to drop a game piece</li><li>Hit 'reset' for a new game</li></ul>");
+    } else if (clicked === true) {
+      clicked = false;
+      $('.header').html("<h1 id='title'>Connect Four</h1><p>the official game of indoor recess</p>");
+    }
   })
 
 
