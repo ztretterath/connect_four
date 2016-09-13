@@ -26,36 +26,77 @@ body {
   width : 600px;
   margin: auto;
   background: rgba(70, 83, 87, 0.90);
+  box-shadow: 0 8px 16px 0;
   border: 3px gray solid;
   display: flex;
   flex-wrap: wrap; /*wrap rows*/
   flex-direction: row; /*ensure circles are in rows*/
   justify-content: space-around; /*create space on all sides of circles*/
 }
-obj {
+.gameTile {
   width: 13%; /*divide 100 by 7*/
   height: 15%; /*divide 100 by 6*/
   border: 1px black solid;
   border-radius: 70px; /*make circles*/
   background: white;
+  box-shadow: 0 4px 8px 0;
 }
 .clickedRed {
   background: red;
+  box-shadow: 0 5px 10px 0;
 }
-.clickedBlack {
-  background: black;
+.clickedBlue {
+  background: blue;
+  box-shadow: 0 5px 10px 0;
 }
-span > button {
+button {
   background: white;
   font-size: 16px;
-  position: relative;
-  display: flex;
-  justify-content: center;
   padding: 14px 40px;
   border-radius: 50%;
 }
 button:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24);
   color: white;
-  background-color: grey;
+  background-color: rgba(70, 83, 87, 0.90);
   transition: 1s;
+}
+#reset {
+  position: absolute;
+  top: 1%;
+  left: 1%;
+}
+#directions {
+  position: absolute;
+  top: 1%;
+  right: 1%;
+}
+.circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+.directions {
+  height: 200px;
+  width: 200px;
+  background: red;
+}
+.dir {
+  list-style-type: none;
+}
+#blueScore {
+  border-bottom: 5px blue solid;
+  position: absolute;;
+  width: 5vw;
+  top: 10%;
+  left: 1%;
+  border-radius: 50%;
+}
+#redScore {
+  border-bottom: 5px red solid;
+  position: absolute;;
+  width: 5vw;
+  top: 10%;
+  right: 1%;
+  border-radius: 50%;
 }

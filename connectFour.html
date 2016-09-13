@@ -2,6 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
 
     <link rel="stylesheet" href="connectFour.css">
 
@@ -20,11 +21,17 @@
     </div>
     <!-- title portion of page -->
 
-    <nav><span>
+    <nav>
       <button type="button" id="reset">reset</button>
       <button type="button" id="directions">directions</button>
-    </span></nav>
+    </nav>
     <!-- creates buttons -->
+    <aside class="score">
+      <input type="text" id="redScore" placeholder="0">
+      <input type="text" id="blueScore" placeholder="0">
+    </aside>
+    <br>
+    <br>
 
     <div class="board"></div>
     <!-- create board for game -->

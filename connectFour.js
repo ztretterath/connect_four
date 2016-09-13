@@ -7,7 +7,7 @@ $(function () {
       $('.board').append(tile);
     }
   }
-  gameTile();
+  gameTile(); //create tiles on board
   //create 7*6 gameboard
 
   // var checkRow = function() {
@@ -28,23 +28,25 @@ $(function () {
       console.log('now red'); //test
     } else if (clicked === false) {
       clicked = true; //change player colors
-      $(this).addClass('clickedBlack');
-      console.log('now black'); //test
+      $(this).addClass('clickedBlue');
+      console.log('now blue'); //test
     }
-  })
+  }); //adds colored game pieces/changes players
 
   $('#reset').on('click', function() {
-    $('.gameTile').removeClass('clickedRed clickedBlack');
+    $('.gameTile').removeClass('clickedRed clickedBlue');
   }) //reset button
 
   var directions = false;
-  $('#directions').on('hover', function() {
-    if (clicked === false) {
-      clicked = true;
-      $('.header').html("<h1 id='title'>Connect Four</h1><ul><li>Red player has first move</li><li>Click empty space to drop a game piece</li><li>Hit 'reset' for a new game</li></ul>");
-    } else if (clicked === true) {
-      clicked = false;
+  $('#directions').on('click', function() {
+    if (directions === false) {
+      $('.header').html("<h1 id='title'>Connect Four</h1><ul class='dir'><li>1: Red player has first move</li><li>2: Click empty space to drop a game piece</li><li>3: Hit 'reset' for a new game</li></ul>");
+      //display directions in header
+      directions = true;
+    } else if (directions === true) {
       $('.header').html("<h1 id='title'>Connect Four</h1><p>the official game of indoor recess</p>");
+      //if clicked again, hide directions
+      directions = false;
     }
   })
 
