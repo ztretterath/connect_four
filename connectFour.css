@@ -1,39 +1,50 @@
 body {
-  background: black;
+  background: white;
 }
 .header {
   background: rgba(70, 83, 87, 0.90);
-  width: 70vw;
+  width: 60vw;
   margin: auto;
   color: white;
   border-radius: 40px;
   text-align: center;
-  padding: 10px;
+  font-family: 'Oswald', sans-serif;
+  position: relative;
+  margin-top: 5px;
+}
+.header > h1 {
+  font-size: 40px;
+}
+.header > p {
+  font-size: 20px;
+  position: relative;;
+  bottom: 10px;
 }
 .board {
   height: 500px;
   width : 600px;
   margin: auto;
-  background: black;
-  border: 3px white solid;
+  background: rgba(70, 83, 87, 0.90);
+  border: 3px gray solid;
   display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: space-between;;
+  flex-wrap: wrap; /*wrap rows*/
+  flex-direction: row; /*ensure circles are in rows*/
+  justify-content: space-around; /*create space on all sides of circles*/
 }
-.gameTile {
-  width: 13%;
-  height: 15%;
-  border: 1px white solid;
-  border-radius: 70px;
-}
-.clickedWhite {
+obj {
+  width: 13%; /*divide 100 by 7*/
+  height: 15%; /*divide 100 by 6*/
+  border: 1px black solid;
+  border-radius: 70px; /*make circles*/
   background: white;
 }
-.clickedGray {
-  background: rgba(70, 83, 87, 0.90)
+.clickedRed {
+  background: red;
 }
-button {
+.clickedBlack {
+  background: black;
+}
+span {
   background: white;
   display: inline-flex;
   justify-content: center;
