@@ -9,20 +9,28 @@ $(function () {
   gameTile();
   //create 7*6 gameboard
 
-  var checkStraightRed = function() {
-    for (var i = 0; i < 42; i + 7) {
-      var inARow = 0;
-      var gameTile = $('#i') //iterate ids
-      if (gameTile.attr('class') === 'clickedRed') {
-        inARow ++; //add up to 4
-        if (inARow === 4) {
-          console.log('you win!');
-        } //end inARow if
-      } //end class check if
-    } //end for loop
-  } //end checkStraightRed method
+  var makeRows = function() {
+    var rowOne = {};
+    var rowTwo = {};
+    var rowThree = {};
+    var rowFour = {};
+    var rowFive = {};
+    var rowSix = {};
 
-  //click for game pieces
+    for (var i = 0; i <= 6; i++) {
+      var tile = $(".gameTile");
+      if (tile.attr('#id') === i) {
+        rowOne['#id'] = i;
+      }
+    }
+    console.log(rowOne);
+  } //end makeRows
+  makeRows();
+
+  var checkRow = function() {
+
+  } //end checkRow method
+
   var clicked = true;
   $('.gameTile').on('click', function() {
     if (clicked === true) {
