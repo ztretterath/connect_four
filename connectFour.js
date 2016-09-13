@@ -60,5 +60,9 @@ $(function () {
     }
   })
 
+  $('#reset').on('click', function() {
+    $('.gameTile').removeClass('clickedRed clickedBlack');
+  })
+
 
 }) //end onload
