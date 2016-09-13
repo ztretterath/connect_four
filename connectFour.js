@@ -1,21 +1,20 @@
 $(function () {
   var gameTile = function() {
     for (var i = 0; i < 42; i++) {
-      var tile = $("<div class='gameTile'></div>");
-      tile.attr('id', i); //for future methods
+      var tile = $('<obj>i</obj>');
       $('.board').append(tile);
     }
   }
   gameTile();
 
-  var gameBoard = {
-    ['', '', '', '', '', '', ''],
-    ['', '', '', '', '', '', ''],
-    ['', '', '', '', '', '', ''],
-    ['', '', '', '', '', '', ''],
-    ['', '', '', '', '', '', ''],
-    ['', '', '', '', '', '', '']
-  }
+  // var gameBoard = {
+  //   ['', '', '', '', '', '', ''],
+  //   ['', '', '', '', '', '', ''],
+  //   ['', '', '', '', '', '', ''],
+  //   ['', '', '', '', '', '', ''],
+  //   ['', '', '', '', '', '', ''],
+  //   ['', '', '', '', '', '', '']
+  // }
   //create 7*6 gameboard
 
   var makeRows = function() {
@@ -27,7 +26,7 @@ $(function () {
     var rowSix = {};
 
     for (var i = 0; i <= 42; i++) {
-      var tile = $(".gameTile");
+      var tile = $("obj");
       if (tile.attr('#id') <= 6) {
         rowOne.id = i;
       } else if (tile.attr('#id') <= 13) {
@@ -53,7 +52,7 @@ $(function () {
   } //end checkRow method
 
   var clicked = true;
-  $('.gameTile').on('click', function() {
+  $('obj').on('click', function() {
     if (clicked === true) {
       clicked = false;
       $(this).addClass('clickedRed');
@@ -70,7 +69,7 @@ $(function () {
   })
 
   $('#reset').on('click', function() {
-    $('.gameTile').removeClass('clickedRed clickedBlack');
+    $('obj').removeClass('clickedRed clickedBlack');
   })
 
 
