@@ -6,7 +6,7 @@ body {
   width: 60vw;
   margin: auto;
   color: white;
-  border-radius: 50px;
+  border-radius: 40%;
   text-align: center;
   font-family: 'Oswald', sans-serif;
   position: relative;
@@ -51,8 +51,8 @@ body {
 }
 button {
   background: white;
-  font-size: 16px;
-  padding: 14px 40px;
+  font-size: 3vw;
+  padding: 2vh 2vw;
   border-radius: 50%;
 }
 button:hover {
@@ -63,12 +63,12 @@ button:hover {
 }
 #reset {
   position: absolute;
-  top: 1%;
-  left: 1%;
+  top: 2%;
+  left: 3%;
 }
 #directions {
   position: absolute;
-  top: 1%;
+  top: 2%;
   right: 1%;
 }
 .circle {
@@ -84,19 +84,18 @@ button:hover {
 .dir {
   list-style-type: none;
 }
+.score {
+  position: absolute;
+  height: 5vw;
+  width: 5vw;
+  font-size: 4vw;
+  top: 15%;
+}
 #blueScore {
   border-bottom: 5px blue solid;
-  position: absolute;;
-  width: 5vw;
-  top: 10%;
-  left: 1%;
-  border-radius: 50%;
+  left: 5%;
 }
 #redScore {
   border-bottom: 5px red solid;
-  position: absolute;;
-  width: 5vw;
-  top: 10%;
-  right: 1%;
-  border-radius: 50%;
+  right: 5%;
 }
