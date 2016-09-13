@@ -1,7 +1,8 @@
 $(function () {
   var gameTile = function() {
     for (var i = 0; i < 42; i++) {
-      var tile = $("<div class='gameTile'></div>")
+      var tile = $("<div class='gameTile'></div>");
+      tile.attr('index', i); //for future methods
       $('.board').append(tile);
     }
   }
@@ -25,6 +26,6 @@ $(function () {
         //test
     }
   })
-    
+
 
 }) //end onload
