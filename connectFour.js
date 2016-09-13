@@ -17,13 +17,25 @@ $(function () {
     var rowFive = {};
     var rowSix = {};
 
-    for (var i = 0; i <= 6; i++) {
+    for (var i = 0; i <= 42; i++) {
       var tile = $(".gameTile");
-      if (tile.attr('#id') === i) {
-        rowOne['#id'] = i;
+      if (tile.attr('#id') <= 6) {
+        rowOne.id = i;
+      } else if (tile.attr('#id') <= 13) {
+        rowTwo.id = i;
+      } else if (tile.attr('#id') <= 20) {
+        rowThree.id = i;
+      } else if (tile.attr('#id') <= 27) {
+        rowFour.id = i;
+      } else if (tile.attr('#id') <= 34) {
+        rowFive.id = i;
+      } else if (tile.attr('#id') <= 42) {
+        rowSix.id = i;
       }
     }
     console.log(rowOne);
+    console.log(rowTwo);
+
   } //end makeRows
   makeRows();
 
