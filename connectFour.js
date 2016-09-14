@@ -10,18 +10,18 @@ $(function () {
   gameTile(); //create tiles on board
   //create 7*6 gameboard
 
-  // var checkRow = function() {
+  // var checkLeft = function() {
   //   for (var i = 0; i < 42; i++) {
-  //     var redCount = 0;
-  //     var checkId = $(this).attr('id');
-  //     if (this.class() === 'clickedRed') {
-  //
-  //     }
+  //     tile = getElementById(i)
+  //     if ()
   //   }
-  // } //end checkRow method
+  // } //end checkLeft method
 
   var clicked = true;
   $('.gameTile').on('click', function() {
+    var tileClicked = $(this).attr("id");
+    var tileAboveId = $(this).attr("id") - 7;
+    var tileAbove = $(this).parent().find("#" + tileAboveId);
     if (clicked === true) {
       clicked = false; //change player colors
       $(this).addClass('clickedRed');
@@ -33,6 +33,7 @@ $(function () {
     }
   }); //adds colored game pieces/changes players
 
+//RESET & DIRECTIONS
   $('#reset').on('click', function() {
     $('.gameTile').removeClass('clickedRed clickedBlue');
   }) //reset button
@@ -48,7 +49,6 @@ $(function () {
       //if clicked again, hide directions
       directions = false;
     }
-  })
+  }); //end directions
 
-
-}) //end onload
+}); //end onload
