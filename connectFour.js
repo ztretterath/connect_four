@@ -33,9 +33,37 @@ $(function () {
         return true;
       } //end if statement
     } //end for loop
+    move = originalMove; //reset for horiz win check
 
     //begin horizontal win check
     leftTiles = [1, 8, 15, 22, 29, 36];
+    inLeft = jQuery.inArray(move, leftTiles);
+    //check is player's move on far left of board
+    if (inLeft > -1) { //arr position starts @ 0
+      if (fourInCol(color, move)) {
+        //can check for win if in left position
+        return true;
+      }
+    } else {
+      while (result = jQuery.inArray(move, leftTiles) == -1) {
+        move -= 1;
+        if (result = jQuery.inArray(move, leftTiles) !== -1) {
+          if (fourInCol(color, move)) {
+            return true;
+          }
+        }
+      }
+    }
+    var fourInCol = function(color, move) {
+      winner = 0;
+      for (var i = move; i < move + 7; i++) {
+        //iterate w/ same function but add 1 not 7
+        if (fourInRow()) {
+          return true;
+        }
+      }
+    }
+    return false; //no wins detected
   } //end checkWin
 
 
