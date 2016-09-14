@@ -5,17 +5,36 @@ $(function () {
       var tile = $("<div class='gameTile'></div>");
       tile.attr('id', i); //for future methods
       $('.board').append(tile);
-    }
+    } //create tiles on board
   }
-  gameTile(); //create tiles on board
-  //create 7*6 gameboard
+  gameTile(); //create 7*6 gameboard
 
-  // var checkLeft = function() {
-  //   for (var i = 0; i < 42; i++) {
-  //     tile = getElementById(i)
-  //     if ()
-  //   }
-  // } //end checkLeft method
+  var winner = 0; //count up to four
+  var checkWin = function(color, square, i) {
+    var fourInRow = function() {
+      if ($("#" + i).hasClass(color)) {
+        winner += 1;
+        if (winner === 4) {
+          return true;
+        }
+      } else {
+        winner = 0;
+      } //end if statement
+    } //end fourInRow
+
+    // begin vertical win check
+    var orignalMove = move;
+    while (move > 7) {
+      move -= 7;
+    } //end while
+    for (i = move; i < 43; i += 7) {
+      if (fourInRow(color, square, i)) {
+        return true;
+      } //end if statement
+    } //end for loop
+  } //end checkWin
+
+
 
   var clicked = true;
   $('.gameTile').on('click', function() {
