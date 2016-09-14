@@ -22,16 +22,24 @@ $(function () {
     var tileClicked = $(this).attr("id");
     var tileAboveId = $(this).attr("id") - 7;
     var tileAbove = $(this).parent().find("#" + tileAboveId);
-    if (clicked === true) {
-      clicked = false; //change player colors
-      $(this).addClass('clickedRed');
-      console.log('now red'); //test
-    } else if (clicked === false) {
-      clicked = true; //change player colors
-      $(this).addClass('clickedBlue');
-      console.log('now blue'); //test
-    }
-  }); //adds colored game pieces/changes players
+    if (tileClicked >= 35 || $(this).hasClass("open")) {
+      //check if tile is open or bottom row
+      if (clicked === true) {
+        clicked = false; //change player colors
+        $(this).addClass('clickedRed');
+        tileAbove.addClass("open");
+        //tile above can be played in
+        console.log('now red'); //test
+      } else if (clicked === false) {
+        clicked = true; //change player colors
+        $(this).addClass('clickedBlue');
+        tileAbove.addClass("open");
+        //tile above can be played in
+        console.log('now blue'); //test
+      }
+    } //adds colored game pieces/changes players
+
+  });
 
 //RESET & DIRECTIONS
   $('#reset').on('click', function() {
