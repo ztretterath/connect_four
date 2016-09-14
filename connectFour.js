@@ -9,6 +9,14 @@ $(function () {
   }
   gameTile(); //create 7*6 gameboard
 
+  var congratulate = function(color) {
+    if (color === 'clickedRed') {
+      //congratulate
+    } else {
+      //congratulate blue
+    }
+  } //end congratulate
+
   var winner = 0; //count up to four
   var checkWin = function(color, move, i) {
     var fourInRow = function() {
@@ -46,8 +54,8 @@ $(function () {
       }
     } else {
       while (result = jQuery.inArray(move, leftTiles) == -1) {
-        move -= 1;
-        if (result = jQuery.inArray(move, leftTiles) !== -1) {
+        move -= 1; //try again if not in leftest col
+        if (result = jQuery.inArray(move, leftTiles) !== -1) { //try until found
           if (fourInCol(color, move)) {
             return true;
           }
@@ -69,7 +77,12 @@ $(function () {
 
 
   var clicked = true;
+  var moveNum = 0
   $('.gameTile').on('click', function() {
+    moveNum += 1; //increment move count
+    if (moveNum > 6) {
+      var result = checkWin()
+    }
     var tileClicked = $(this).attr("id");
     var tileAboveId = $(this).attr("id") - 7;
     var tileAbove = $(this).parent().find("#" + tileAboveId);
