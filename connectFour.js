@@ -12,17 +12,19 @@ $(function () {
   //where player plays
   var moveNum = 0;
   //wins can occur after 6 moves
-
+  var clicked = true;
+  //toggles T/F to change players
+  var winner = 0;
+  //count up to four
   var color = '';
+  //used for checkWin method - defined below
+
   if ($(this).hasClass("clickedRed")) {
     color = 'clickedRed';
   } else if ($(this).hasClass("clickedBlue")) {
     color = 'clickedBlue';
   }
 
-  var winner = 0; //count up to four
-
-  //where player placed game tile
   var checkWin = function(color, move) {
     var fourInRow = function() {
       if ($("#" + move).hasClass(color)) { //grab by #id
@@ -41,12 +43,12 @@ $(function () {
       move -= 7; //to access squares on top row
     } //end while
     for (i = move; i < 43; i += 7) { //loop down
-      if (fourInRow(color, move)) {
+      if (fourInRow()) {
         return true;
       } //end if statement
     } //end for loop
-    move = originalMove; //reset for horiz win check
 
+    move = originalMove; //reset for horiz win check
     var fourInHoriz = function(color, move) {
       winner = 0;
       for (var i = move; i < move + 7; i++) {
@@ -69,18 +71,21 @@ $(function () {
     } else {
       while (result = jQuery.inArray(move, leftTiles) == -1) {
         move -= 1; //try again if not in leftest col
-        if (result = jQuery.inArray(move, leftTiles) !== -1) { //try until found
+        if (result = jQuery.inArray(move, leftTiles) !== -1) {
           if (fourInHoriz(color, move)) {
             return true;
           }
         }
-      }
+      } //end while
     }
 
     // return false; //no wins detected
   } //end checkWin
 
   var congratulate = function(color) {
+
+    console.log("congratulate works");
+
     if (color === 'clickedRed') {
       $('.header').html("<h1 id='title'>RED WINS!</h1>")
     } else {
@@ -88,13 +93,21 @@ $(function () {
     }
   } //end congratulate
 
-  var clicked = true;
+
 
   $('.gameTile').on('click', function() {
-    moveNum += 1; //increment move count
+
+    moveNum += 1;
+    //increment move count
+
     if (moveNum > 6) {
       var result = checkWin(color, move)
+    } //if true, game ends
+
+    if (result === true) {
+      congratulate(color);
     }
+
     var tileClicked = $(this).attr("id");
     var tileAboveId = $(this).attr("id") - 7;
     var tileAbove = $(this).parent().find("#" + tileAboveId);
