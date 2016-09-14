@@ -1,5 +1,7 @@
 $(function () {
   var gameTile = function() {
+    
+    console.log("gameTile function");
     for (var i = 1; i < 43; i++) {
       var tile = $("<div class='gameTile'></div>");
       tile.attr('id', i); //for future methods
@@ -26,7 +28,15 @@ $(function () {
   }
 
   var checkWin = function(color, move) {
+
+    console.log("checkWin function Values: " + color + " " + move);
+    //test
+
     var fourInRow = function() {
+
+      console.log("fourInRow function");
+      //test
+
       if ($("#" + move).hasClass(color)) { //grab by #id
         winner += 1;
         if (winner === 4) {
@@ -50,6 +60,10 @@ $(function () {
 
     move = originalMove; //reset for horiz win check
     var fourInHoriz = function(color, move) {
+
+      console.log("fourInHoriz function Values: " + color + " " + move);
+      //test
+
       winner = 0;
       for (var i = move; i < move + 7; i++) {
         //iterate w/ same function but add 1 not 7
@@ -84,7 +98,8 @@ $(function () {
 
   var congratulate = function(color) {
 
-    console.log("congratulate works");
+    console.log("congratulate function. Values: " + color);
+    //test
 
     if (color === 'clickedRed') {
       $('.header').html("<h1 id='title'>RED WINS!</h1>")
