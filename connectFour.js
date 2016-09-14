@@ -1,7 +1,7 @@
 $(function () {
 
   var gameTile = function() {
-    for (var i = 0; i < 42; i++) {
+    for (var i = 1; i < 43; i++) {
       var tile = $("<div class='gameTile'></div>");
       tile.attr('id', i); //for future methods
       $('.board').append(tile);
@@ -10,28 +10,32 @@ $(function () {
   gameTile(); //create 7*6 gameboard
 
   var winner = 0; //count up to four
-  var checkWin = function(color, square, i) {
+  var checkWin = function(color, move, i) {
     var fourInRow = function() {
-      if ($("#" + i).hasClass(color)) {
+      if ($("#" + i).hasClass(color)) { //grab by #id
         winner += 1;
         if (winner === 4) {
           return true;
         }
       } else {
-        winner = 0;
+        winner = 0; //if interrupter by another player
       } //end if statement
     } //end fourInRow
 
     // begin vertical win check
     var orignalMove = move;
+    //where player placed game tile
     while (move > 7) {
-      move -= 7;
+      move -= 7; //to access squares on top row
     } //end while
-    for (i = move; i < 43; i += 7) {
-      if (fourInRow(color, square, i)) {
+    for (i = move; i < 43; i += 7) { //loop down
+      if (fourInRow(color, move, i)) {
         return true;
       } //end if statement
     } //end for loop
+
+    //begin horizontal win check
+    leftTiles = [1, 8, 15, 22, 29, 36];
   } //end checkWin
 
 
