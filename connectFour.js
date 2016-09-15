@@ -88,17 +88,17 @@ $(function () {
     return false; //no wins detected
   } //end checkWin
 
+  var red = 0;
+  var blue = 0;
   var congratulate = function(color) {
-    var red = 0;
-    var blue = 0;
     console.log("congratulate function. Values: " + color);
     //test
     if (color === 'clickedRed') {
-      red += 1;
+      red++;
       $('.header').html("<h1 id='title'>RED WINS!</h1><p>reset for new game</p>");
       $("#redScore").attr("placeholder", red);
     } else {
-      blue += 1;
+      blue++;
       $('.header').html("<h1 id='title'>BLUE WINS!</h1><p>reset for new game</p>")
       $("#blueScore").attr("placeholder", blue);
     }
