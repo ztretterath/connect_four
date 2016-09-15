@@ -23,8 +23,8 @@ body {
   bottom: 10px;
 }
 .board {
-  height: 500px;
-  width : 600px;
+  height: 400px;
+  width : 500px;
   margin: auto;
   background: rgba(70, 83, 87, 0.90);
   box-shadow: 0 8px 16px 0;

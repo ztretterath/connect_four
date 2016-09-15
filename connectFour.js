@@ -153,7 +153,7 @@ $(function () {
   var directions = false;
   $('#directions').on('click', function() {
     if (directions === false) {
-      $('.header').html("<ul class='dir'><li>1: Red player has first move</li><li>2: Click empty space to drop a game piece</li><li>3: Hit 'reset' for a new game</li></ul>");
+      $('.header').html("<ul class='dir'><li>1: Red player has first move</li><br><li>2: Click empty space to drop a game piece</li><br><li>3: Hit 'reset' for a new game</li></ul>");
       //display directions in header
       directions = true;
     } else if (directions === true) {
