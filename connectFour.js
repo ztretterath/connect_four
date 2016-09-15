@@ -144,6 +144,7 @@ $(function () {
 //RESET & DIRECTIONS
   $('#reset').on('click', function() {
     winner = 0;
+    moveNum = 0;
     $('.gameTile').removeClass('clickedRed clickedBlue');
   }) //reset button
 
