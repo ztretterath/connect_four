@@ -18,11 +18,9 @@ $(function () {
   //wins can occur after 6 moves
   var clicked = true;
   //toggles T/F to change players
-  var winner = 0;
-  //count up to four
   var color = "";
   //used for checkWin method - defined below
-
+  var winner = 0;
   var fourInRow = function() {
     console.log($('#' + move));
     console.log("fourInRow function");
@@ -37,24 +35,23 @@ $(function () {
     } //end if statement
   } //end fourInRow
 
-  var fourInHoriz = function() {
+  var fourInHoriz = function(color, move) {
     console.log("fourInHoriz function Values: " + color + " " + move);
     //test
     winner = 0;
     for (var i = move; i < move + 7; i++) {
       console.log(move);
       //iterate w/ same function but add 1 not 7
-      if (fourInRow(color, move)) {
+      if (fourInRow()) {
         return true;
       }
     }
   }
 
+  var originalMove = move; //move will change
   var checkWin = function(color, move) {
     console.log("checkWin function Values: " + color + " " + move);
-    // fourInRow(color, move)
-    // begin vertical win check
-    var originalMove = move;//move will be manipulated
+    //vertical win check
     while (move > 7) {
       move -= 7; //to access squares on top row
     } //end while
@@ -63,13 +60,22 @@ $(function () {
         return true;
       } //end if statement
     } //end for loop
-    move = originalMove; //reset for horiz win check
 
-    //begin horizontal win check
-    var leftTiles = [1, 8, 15, 22, 29, 36];
+    move = originalMove; //reset for horiz win check
+    // while (move > 1) {
+    //   move -= 1; //to access squares on top row
+    // } //end while
+    // for (var i = move; i < 43; i += 1) { //loop down
+    //   if (fourInRow(color, move)) {
+    //     return true;
+    //   } //end if statement
+    // }
+
+
+    var leftTiles = [1, 8, 15, 22, 29, 36]; // horizontal win check
     var inLeft = jQuery.inArray(move, leftTiles);
     //check if player's move on far left of board
-    if (inLeft > -1) { //arr position starts @ 0
+    if (inLeft >= 0) { //arr position starts @ 0
       if (fourInHoriz(color, move)) {
         //can check for win if in left position
         return true;
@@ -78,14 +84,14 @@ $(function () {
       while (result = jQuery.inArray(move, leftTiles) == -1) {
         move -= 1; //try again if not in leftest col
         if (result = jQuery.inArray(move, leftTiles) !== -1) {
+          console.log(move);
           if (fourInHoriz(color, move)) {
             return true;
            }
          }
        } //end while
-    }
+    } return false; //no wins detected
 
-    return false; //no wins detected
   } //end checkWin
 
   var red = 0;
@@ -97,10 +103,12 @@ $(function () {
       red++;
       $('.header').html("<h1 id='title'>RED WINS!</h1><p>reset for new game</p>");
       $("#redScore").attr("placeholder", red);
+      $(".header").css("background", "red");
     } else {
       blue++;
       $('.header').html("<h1 id='title'>BLUE WINS!</h1><p>reset for new game</p>")
       $("#blueScore").attr("placeholder", blue);
+      $(".header").css("background", "blue");
     }
   } //end congratulate
 
@@ -138,7 +146,6 @@ $(function () {
         congratulate(color);
       }
     } //if true, game ends
-
   }); //end click method
 
 //RESET & DIRECTIONS
@@ -146,6 +153,7 @@ $(function () {
     winner = 0;
     moveNum = 0;
     clicked = true;
+    $(".header").css("background", "rgba(70, 83, 87, 0.90)");
     $('.gameTile').removeClass('clickedRed clickedBlue');
     $('.header').html("<h1 id='title'>Connect Four</h1><p>the official game of indoor recess</p>");
   }) //reset button

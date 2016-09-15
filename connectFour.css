@@ -38,17 +38,15 @@ body {
   width: 13%; /*divide 100 by 7*/
   height: 15%; /*divide 100 by 6*/
   border: 1px black solid;
-  border-radius: 70px; /*make circles*/
+  border-radius: 50%; /*make circles*/
   background: white;
   box-shadow: 0 4px 8px 0;
 }
 .clickedRed {
   background: red;
-  box-shadow: 0 5px 10px 0;
 }
 .clickedBlue {
   background: blue;
-  box-shadow: 0 5px 10px 0;
 }
 button {
   background: white;
