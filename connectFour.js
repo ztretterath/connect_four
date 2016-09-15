@@ -4,47 +4,48 @@ $(function () {
     console.log("gameTile function");
     //test
 
-    // for (var i = 1; i <= 36; i++) {
+    for (var i = 1; i < 43; i++) {
+      var tile = $("<div class='gameTile'></div>");
+      tile.attr('id', i); //for future methods
+      $('.board').append(tile);
+    }
+
+    // for (var i = 1; i <= 36; i+=7) {
     //   var tile = $("<div class='gameTile'></div>");
     //   tile.attr('id', i); //for future methods
-    //   $('.board').append(tile);
+    //   $('#a').append(tile);
+    // } //create tiles on board
+    // for (var i = 2; i <= 37; i+=7) {
+    //   var tile = $("<div class='gameTile'></div>");
+    //   tile.attr('id', i); //for future methods
+    //   $('#b').append(tile);
+    // }
+    // for (var i = 3; i <= 38; i+=7) {
+    //   var tile = $("<div class='gameTile'></div>");
+    //   tile.attr('id', i); //for future methods
+    //   $('#c').append(tile);
+    // }
+    // for (var i = 4; i <= 39; i+=7) {
+    //   var tile = $("<div class='gameTile'></div>");
+    //   tile.attr('id', i); //for future methods
+    //   $('#d').append(tile);
+    // }
+    // for (var i = 5; i <= 40; i+=7) {
+    //   var tile = $("<div class='gameTile'></div>");
+    //   tile.attr('id', i); //for future methods
+    //   $('#e').append(tile);
+    // }
+    // for (var i = 6; i <= 41; i+=7) {
+    //   var tile = $("<div class='gameTile'></div>");
+    //   tile.attr('id', i); //for future methods
+    //   $('#f').append(tile);
+    // }
+    // for (var i = 7; i <= 42; i+=7) {
+    //   var tile = $("<div class='gameTile'></div>");
+    //   tile.attr('id', i); //for future methods
+    //   $('#f').append(tile);
     // }
 
-    for (var i = 1; i <= 36; i+=7) {
-      var tile = $("<div class='gameTile'></div>");
-      tile.attr('id', i); //for future methods
-      $('#a').append(tile);
-    } //create tiles on board
-    for (var i = 2; i <= 37; i+=7) {
-      var tile = $("<div class='gameTile'></div>");
-      tile.attr('id', i); //for future methods
-      $('#b').append(tile);
-    }
-    for (var i = 3; i <= 38; i+=7) {
-      var tile = $("<div class='gameTile'></div>");
-      tile.attr('id', i); //for future methods
-      $('#c').append(tile);
-    }
-    for (var i = 4; i <= 39; i+=7) {
-      var tile = $("<div class='gameTile'></div>");
-      tile.attr('id', i); //for future methods
-      $('#d').append(tile);
-    }
-    for (var i = 5; i <= 40; i+=7) {
-      var tile = $("<div class='gameTile'></div>");
-      tile.attr('id', i); //for future methods
-      $('#e').append(tile);
-    }
-    for (var i = 6; i <= 41; i+=7) {
-      var tile = $("<div class='gameTile'></div>");
-      tile.attr('id', i); //for future methods
-      $('#f').append(tile);
-    }
-    for (var i = 7; i <= 42; i+=7) {
-      var tile = $("<div class='gameTile'></div>");
-      tile.attr('id', i); //for future methods
-      $('#f').append(tile);
-    }
   }
   gameTile(); //create 7*6 gameboard
 
@@ -66,6 +67,7 @@ $(function () {
 
     if ($("#" + move).hasClass("clickedRed")) { //grab by #id
       redWinner += 1;
+      console.log($("#" + move-1));
       console.log(redWinner);
       if (redWinner == 4) {
         return true;
@@ -78,16 +80,13 @@ $(function () {
       }
     } else {
       redWinner = 0;
-      blueWinner = 0; //if interrupted by another player
+      blueWinner = 0;
     } //end if statement
   } //end fourInRow
 
   var fourInHoriz = function(color, move) {
     // console.log("fourInHoriz function Values: " + color + " " + move);
-
-    winner = 0;
     for (var i = move; i < move + 7; i++) {
-      console.log(move);
       //iterate w/ same function but add 1 not 7
       if (fourInRow()) {
         return true;
@@ -153,14 +152,10 @@ $(function () {
   } //end congratulate
 
   $('.gameTile').on('click', function() {
-    console.log(inLeft);
-
-    //player can win after 6 moves
     var tileClicked = $(this).attr("id");
     var tileAboveId = $(this).attr("id") - 7;
     var tileAbove = $(this).parent().find("#" + tileAboveId);
     if (tileClicked >= 35 || $(this).hasClass("open")) {
-      //check if tile is open or bottom row
       if (clicked === true) {
         clicked = false; //change player colors
         redMoveNum += 1;
