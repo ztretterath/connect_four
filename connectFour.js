@@ -145,13 +145,15 @@ $(function () {
   $('#reset').on('click', function() {
     winner = 0;
     moveNum = 0;
+    clicked = true;
     $('.gameTile').removeClass('clickedRed clickedBlue');
+    $('.header').html("<h1 id='title'>Connect Four</h1><p>the official game of indoor recess</p>");
   }) //reset button
 
   var directions = false;
   $('#directions').on('click', function() {
     if (directions === false) {
-      $('.header').html("<h1 id='title'>Connect Four</h1><ul class='dir'><li>1: Red player has first move</li><li>2: Click empty space to drop a game piece</li><li>3: Hit 'reset' for a new game</li></ul>");
+      $('.header').html("<ul class='dir'><li>1: Red player has first move</li><li>2: Click empty space to drop a game piece</li><li>3: Hit 'reset' for a new game</li></ul>");
       //display directions in header
       directions = true;
     } else if (directions === true) {
