@@ -95,11 +95,11 @@ $(function () {
     //test
     if (color === 'clickedRed') {
       red += 1;
-      $('.header').html("<h1 id='title'>RED WINS!</h1>");
+      $('.header').html("<h1 id='title'>RED WINS!</h1><p>reset for new game</p>");
       $("#redScore").attr("placeholder", red);
     } else {
       blue += 1;
-      $('.header').html("<h1 id='title'>BLUE WINS!</h1>")
+      $('.header').html("<h1 id='title'>BLUE WINS!</h1><p>reset for new game</p>")
       $("#blueScore").attr("placeholder", blue);
     }
   } //end congratulate
@@ -143,6 +143,7 @@ $(function () {
 
 //RESET & DIRECTIONS
   $('#reset').on('click', function() {
+    winner = 0;
     $('.gameTile').removeClass('clickedRed clickedBlue');
   }) //reset button
 
