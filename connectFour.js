@@ -1,7 +1,9 @@
 $(function () {
   var gameTile = function() {
-    
+
     console.log("gameTile function");
+    //test
+
     for (var i = 1; i < 43; i++) {
       var tile = $("<div class='gameTile'></div>");
       tile.attr('id', i); //for future methods
@@ -11,6 +13,7 @@ $(function () {
   gameTile(); //create 7*6 gameboard
 
   var move = $(this).attr("id");
+
   //where player plays
   var moveNum = 0;
   //wins can occur after 6 moves
@@ -21,76 +24,81 @@ $(function () {
   var color = '';
   //used for checkWin method - defined below
 
-  if ($(this).hasClass("clickedRed")) {
-    color = 'clickedRed';
-  } else if ($(this).hasClass("clickedBlue")) {
-    color = 'clickedBlue';
+  // if ($(this).hasClass("clickedRed")) {
+  //   color = 'clickedRed';
+  // } else if ($(this).hasClass("clickedBlue")) {
+  //   color = 'clickedBlue';
+  // }
+
+  var fourInRow = function(color, move) {
+
+    console.log("fourInRow function");
+    //test
+    var winner = 0;
+    if ($("#" + move).hasClass(color)) { //grab by #id
+      winner += 1;
+      if (winner === 4) {
+        return true;
+      }
+    } else {
+      winner = 0; //if interrupted by another player
+    } //end if statement
+  } //end fourInRow
+
+  var fourInHoriz = function(color, move) {
+
+    console.log("fourInHoriz function Values: " + color + " " + move);
+    //test
+
+    winner = 0;
+    for (var i = move; i < move + 7; i++) {
+      //iterate w/ same function but add 1 not 7
+      if (fourInRow()) {
+        return true;
+      }
+    }
   }
 
   var checkWin = function(color, move) {
 
     console.log("checkWin function Values: " + color + " " + move);
-    //test
 
-    var fourInRow = function() {
+    // fourInRow(color, move)
+    // fourInHoriz(color, move)
 
-      console.log("fourInRow function");
-      //test
-
-      if ($("#" + move).hasClass(color)) { //grab by #id
-        winner += 1;
-        if (winner === 4) {
-          return true;
-        }
-      } else {
-        winner = 0; //if interrupted by another player
-      } //end if statement
-    } //end fourInRow
-
-    // begin vertical win check
-    var originalMove = move;
-    while (move > 7) {
-      move -= 7; //to access squares on top row
-    } //end while
-    for (i = move; i < 43; i += 7) { //loop down
-      if (fourInRow()) {
-        return true;
-      } //end if statement
-    } //end for loop
-
-    move = originalMove; //reset for horiz win check
-    var fourInHoriz = function(color, move) {
-
-      console.log("fourInHoriz function Values: " + color + " " + move);
-      //test
-
-      winner = 0;
-      for (var i = move; i < move + 7; i++) {
-        //iterate w/ same function but add 1 not 7
-        if (fourInRow()) {
-          return true;
-        }
-      }
-    }
-
-    //begin horizontal win check
-    var leftTiles = [1, 8, 15, 22, 29, 36];
-    var inLeft = jQuery.inArray(move, leftTiles);
-    //check is player's move on far left of board
-    if (inLeft > -1) { //arr position starts @ 0
-      if (fourInHoriz(color, move)) {
-        //can check for win if in left position
-        return true;
-      }
-    } else {
-      while (result = jQuery.inArray(move, leftTiles) == -1) {
-        move -= 1; //try again if not in leftest col
-        if (result = jQuery.inArray(move, leftTiles) !== -1) {
-          if (fourInHoriz(color, move)) {
-            return true;
-          }
-        }
-      } //end while
+    // // begin vertical win check
+    // var originalMove = move;
+    // //move will be manipulated
+    // while (move > 7) {
+    //   move -= 7; //to access squares on top row
+    // } //end while
+    // for (i = move; i < 43; i += 7) { //loop down
+    //   if (fourInRow()) {
+    //     return true;
+    //   } //end if statement
+    // } //end for loop
+    //
+    // move = originalMove; //reset for horiz win check
+    //
+    //
+    // //begin horizontal win check
+    // var leftTiles = [1, 8, 15, 22, 29, 36];
+    // var inLeft = jQuery.inArray(move, leftTiles);
+    // //check is player's move on far left of board
+    // if (inLeft > -1) { //arr position starts @ 0
+    //   if (fourInHoriz(color, move)) {
+    //     //can check for win if in left position
+    //     return true;
+    //   }
+    // } else {
+    //   while (result = jQuery.inArray(move, leftTiles) == -1) {
+    //     move -= 1; //try again if not in leftest col
+    //     if (result = jQuery.inArray(move, leftTiles) !== -1) {
+    //       if (fourInHoriz(color, move)) {
+    //         return true;
+    //       }
+    //     }
+    //   } //end while
     }
 
     // return false; //no wins detected
@@ -113,15 +121,10 @@ $(function () {
   $('.gameTile').on('click', function() {
 
     moveNum += 1;
+    console.log(moveNum);
     //increment move count
 
-    if (moveNum > 6) {
-      var result = checkWin(color, move)
-    } //if true, game ends
 
-    if (result === true) {
-      congratulate(color);
-    }
 
     var tileClicked = $(this).attr("id");
     var tileAboveId = $(this).attr("id") - 7;
@@ -131,17 +134,27 @@ $(function () {
       if (clicked === true) {
         clicked = false; //change player colors
         $(this).addClass('clickedRed');
+        color = 'clickedRed'
         tileAbove.addClass("open");
         //tile above can be played in
         console.log('now red'); //test
       } else if (clicked === false) {
         clicked = true; //change player colors
         $(this).addClass('clickedBlue');
+        color = 'clickedBlue'
         tileAbove.addClass("open");
         //tile above can be played in
         console.log('now blue'); //test
       }
     } //adds colored game pieces/changes players
+
+    if (moveNum > 6) {
+      var result = checkWin(color, move)
+    } //if true, game ends
+
+    if (result === true) {
+      congratulate(color);
+    }
 
   });
 
