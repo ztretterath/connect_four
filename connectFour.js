@@ -43,8 +43,6 @@ $(function () {
       while (originalX > 0) {
         if (colorStore[originalX][originalY] == move) {
           left++;
-          console.log(left);
-          console.log(move);
           if (left == 4) {
             congratulate(move);
           }
@@ -56,12 +54,8 @@ $(function () {
     }
     var downWin = function() {
       while (originalY < 7) {
-        var originalX = x;
-        var originalY = y;
         if (colorStore[originalX][originalY] == move) {
           down++;
-          console.log(down);
-          console.log(move);
           if (down == 4) {
             congratulate(move);
           }
@@ -69,6 +63,7 @@ $(function () {
           down = 0;
         }
         originalY++;
+        console.log(originalY);
       }
     }
     leftWin();
@@ -101,7 +96,6 @@ $(function () {
       clicked = false; //change player colors
       colorStore[x][y] = 'clickedRed'
       redMoveNum += 1;
-      console.log(redMoveNum);
       color = 'clickedRed';
       move = colorStore[x][y];
       $(this).addClass('clickedRed');
