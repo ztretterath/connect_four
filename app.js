@@ -106,11 +106,13 @@ $(function () {
       $('.header').html("<h1 id='title'>RED WINS!</h1><p>reset for new game</p>");
       $("#redScore").attr("placeholder", red);
       $(".header").css("background", "red");
+      $(".gameTile").addClass('clickedRed');
     } else {
       blue++;
       $('.header').html("<h1 id='title'>BLUE WINS!</h1><p>reset for new game</p>")
       $("#blueScore").attr("placeholder", blue);
       $(".header").css("background", "blue");
+      $(".gameTile").addClass('clickedBlue');
     }
   } //end congratulate
 
@@ -154,7 +156,7 @@ $(function () {
     blueMoveNum = 0;
     clicked = true;
     $(".header").css("background", "rgba(70, 83, 87, 0.90)");
-    $('.gameTile').removeClass('clickedRed clickedBlue');
+    $('.gameTile').removeClass('clickedRed clickedBlue open');
     $('.header').html("<h1 id='title'>Connect Four</h1><p>the official game of indoor recess</p>");
   }) //reset button
 
