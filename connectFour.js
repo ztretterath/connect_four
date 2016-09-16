@@ -9,45 +9,36 @@ $(function () {
       tile.attr('id', i); //for future methods
       $('.board').append(tile);
     }
-
-    // for (var i = 1; i <= 36; i+=7) {
+    // for (var i = 1; i < 43; i++) {
     //   var tile = $("<div class='gameTile'></div>");
-    //   tile.attr('id', i); //for future methods
-    //   $('#a').append(tile);
-    // } //create tiles on board
-    // for (var i = 2; i <= 37; i+=7) {
-    //   var tile = $("<div class='gameTile'></div>");
-    //   tile.attr('id', i); //for future methods
-    //   $('#b').append(tile);
+    //   for (var x = 1; x <= 7; x++) {
+    //     tile.attr('x', x);
+    //     for (var y = 1; y <=6; y++) {
+    //       tile.attr('y', y);
+    //     }
+    //     $('.board').append(tile);
+    //   }
     // }
-    // for (var i = 3; i <= 38; i+=7) {
-    //   var tile = $("<div class='gameTile'></div>");
-    //   tile.attr('id', i); //for future methods
-    //   $('#c').append(tile);
-    // }
-    // for (var i = 4; i <= 39; i+=7) {
-    //   var tile = $("<div class='gameTile'></div>");
-    //   tile.attr('id', i); //for future methods
-    //   $('#d').append(tile);
-    // }
-    // for (var i = 5; i <= 40; i+=7) {
-    //   var tile = $("<div class='gameTile'></div>");
-    //   tile.attr('id', i); //for future methods
-    //   $('#e').append(tile);
-    // }
-    // for (var i = 6; i <= 41; i+=7) {
-    //   var tile = $("<div class='gameTile'></div>");
-    //   tile.attr('id', i); //for future methods
-    //   $('#f').append(tile);
-    // }
-    // for (var i = 7; i <= 42; i+=7) {
-    //   var tile = $("<div class='gameTile'></div>");
-    //   tile.attr('id', i); //for future methods
-    //   $('#f').append(tile);
-    // }
-
   }
   gameTile(); //create 7*6 gameboard
+
+  //to access for finding matched
+  // store = {
+  //   1:{1: ""},2:{1: ""},3:{1: ""},4:{1: ""},5:{1: ""},6:{1: ""},7:{1: ""},
+  //   1:{2: ""},2:{2: ""},3:{2: ""},4:{2: ""},5:{2: ""},6:{2: ""},7:{2: ""},
+  //   1:{3: ""},2:{3: ""},3:{3: ""},4:{3: ""},5:{3: ""},6:{3: ""},7:{3: ""},
+  //   1:{4: ""},2:{4: ""},3:{4: ""},4:{4: ""},5:{4: ""},6:{4: ""},7:{4: ""},
+  //   1:{5: ""},2:{5: ""},3:{5: ""},4:{5: ""},5:{5: ""},6:{5: ""},7:{5: ""},
+  //   1:{6: ""},2:{6: ""},3:{6: ""},4:{6: ""},5:{6: ""},6:{6: ""},7:{6: ""}
+  // }
+  store = {
+    1:{1: ""},2:{1: ""},3:{1: ""},4:{1: ""},5:{1: ""},6:{1: ""},7:{1: ""},
+    1:{8: ""},2:{9: ""},3:{10: ""},4:{11: ""},5:{12: ""},6:{13: ""},7:{14: ""},
+    1:{15: ""},2:{16: ""},3:{17: ""},4:{18: ""},5:{19: ""},6:{20: ""},7:{21: ""},
+    1:{22: ""},2:{23: ""},3:{24: ""},4:{25: ""},5:{26: ""},6:{27: ""},7:{28: ""},
+    1:{29: ""},2:{30: ""},3:{31: ""},4:{32: ""},5:{33: ""},6:{34: ""},7:{35: ""},
+    1:{36: ""},2:{37: ""},3:{38: ""},4:{39: ""},5:{40: ""},6:{41: ""},7:{42: ""}
+  }
 
   var move = "";//where player plays, changes when clicked
 
@@ -100,29 +91,52 @@ $(function () {
 
   var originalMove = move; //move will change
   var checkWin = function(color, move) {
+    console.log('checkWin running');
     //vertical
-    for (var i = move; i < 43; i += 7) {
-      if ($("#" + move).hasClass("clickedRed")) { //grab by #id
-        redWinner += 1;
-        if (redWinner == 4) {
-          congratulate(color);
-        }
-      } else if ($("#" + move).hasClass("clickedBlue")) {
+
+    if ($("#" + move).hasClass("clickedRed")) {
+      while (move > 7) { //vertical win check
+        move -= 7; //to access squares on top row
+      }
+      redWinner += 1;
+      console.log(redWinner);
+      if (redWinner == 4) {
+        congratulate(color);
+      }
+    } else if ($("#" + move).hasClass("clickedBlue")) {
         blueWinner += 1;
         console.log(blueWinner);
         if (blueWinner == 4) {
           congratulate(color);
         }
-      } else {
+    } else {
         redWinner = 0;
         blueWinner = 0;
-      } //end if statement
-    } //end vertical
+    }
+  // } //end vertical
 
     //horizontal
-    move = originalMove;
-    
-  }
+    // move = originalMove;
+    // for (var i = move; i < 43; i -= 1) {
+    //   if ($("#" + move).hasClass("clickedRed")) {
+    //     redWinner += 1;
+    //     console.log(redWinner);
+    //     if (redWinner == 4) {
+    //       congratulate(color);
+    //     }
+    //   } else if ($("#" + move).hasClass("clickedBlue")) {
+    //     blueWinner += 1;
+    //     console.log(blueWinner);
+    //     if (blueWinner == 4) {
+    //       congratulate(color);
+    //     }
+    //   } else {
+    //     redWinner = 0;
+    //     blueWinner = 0;
+    //   } //end if statement
+    // } //end horizontal
+    return false;
+  } //end checkWin
 
     // while (move > 7) { //vertical win check
     //   move -= 7; //to access squares on top row
@@ -199,11 +213,12 @@ $(function () {
     } //adds colored game pieces/changes players
 
     if (redMoveNum == 4 || blueMoveNum == 4) {
-      var result = checkWin(color, move)
-      console.log(result);
-      if (result == true) {
-        congratulate(color);
-      }
+      checkWin();
+    //   var result = checkWin(color, move)
+    //   console.log(result);
+    //   if (result == true) {
+    //     congratulate(color);
+    //   }
     } //if true, game ends
   }); //end click method
 
