@@ -37,13 +37,13 @@ $(function () {
   var down = 0; //vertical win count
 
   var checkWin = function(x, y) {
-    var originalX = x;
-    var originalY = y;
+    var xOne = x;
+    var yOne = y;
 
     //check left
     var leftWin = function() {
-      while (originalX > 0) {
-        if (colorStore[originalX][originalY] == move) {
+      while (xOne > 0) {
+        if (colorStore[xOne][yOne] == move) {
           left++;
           if (left == 4) {
             congratulate(move);
@@ -51,27 +51,33 @@ $(function () {
         } else {
           left = 0;
         }
-        originalX--;
+        xOne--;
       }
-    }
+    }// end check left
+
+    //check down
     var downWin = function() {
-      x = originalX;
-      y = originalY;
-      while (y < 7 && y > 0 && x > 0) {
-        if (colorStore[x][y] == move) {
+      var xTwo = xOne;
+      var  yTwo = yOne;
+      while (yTwo < 7 && yTwo > 0 && xTwo > 0) {
+        if (colorStore[xTwo][yTwo] == move) {
           down++;
-          console.log(down);
+          console.log(move);
           if (down == 4) {
             congratulate(move);
           }
         } else {
           down = 0;
         }
-        y++;
+        yTwo++;
       }
-    }
+    } //end check down
+
+    
+
     downWin();
     leftWin();
+    rightWin
   } //end checkWin
 
 
