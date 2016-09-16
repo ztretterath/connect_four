@@ -61,77 +61,98 @@ $(function () {
   var redWinner = 0;
   var blueWinner = 0;
 
-  var fourInRow = function() {
-    // console.log($('#' + move));
-    // console.log("fourInRow function");
+  // var fourInRow = function() {
+  //   // console.log($('#' + move));
+  //   // console.log("fourInRow function");
+  //
+  //   if ($("#" + move).hasClass("clickedRed")) { //grab by #id
+  //     redWinner += 1;
+  //     console.log($("#" + move-1));
+  //     console.log(redWinner);
+  //     if (redWinner == 4) {
+  //       return true;
+  //     }
+  //   } else if ($("#" + move).hasClass("clickedBlue")) {
+  //     blueWinner += 1;
+  //     console.log(blueWinner);
+  //     if (blueWinner == 4) {
+  //       return true;
+  //     }
+  //   } else {
+  //     redWinner = 0;
+  //     blueWinner = 0;
+  //   } //end if statement
+  // } //end fourInRow
+  //
+  // var fourInHoriz = function(color, move) {
+  //   // console.log("fourInHoriz function Values: " + color + " " + move);
+  //   for (var i = move; i < move + 7; i++) {
+  //     //iterate w/ same function but add 1 not 7
+  //     if (fourInRow()) {
+  //       return true;
+  //     }
+  //   }
+  // }
 
-    if ($("#" + move).hasClass("clickedRed")) { //grab by #id
-      redWinner += 1;
-      console.log($("#" + move-1));
-      console.log(redWinner);
-      if (redWinner == 4) {
-        return true;
-      }
-    } else if ($("#" + move).hasClass("clickedBlue")) {
-      blueWinner += 1;
-      console.log(blueWinner);
-      if (blueWinner == 4) {
-        return true;
-      }
-    } else {
-      redWinner = 0;
-      blueWinner = 0;
-    } //end if statement
-  } //end fourInRow
-
-  var fourInHoriz = function(color, move) {
-    // console.log("fourInHoriz function Values: " + color + " " + move);
-    for (var i = move; i < move + 7; i++) {
-      //iterate w/ same function but add 1 not 7
-      if (fourInRow()) {
-        return true;
-      }
-    }
-  }
-
-  var leftTiles = [1, 8, 15, 22, 29, 36]; // for horizontal win check
-
-  var inLeft = jQuery.inArray(move, leftTiles); //in furthest col?
+  // var leftTiles = [1, 8, 15, 22, 29, 36]; // for horizontal win check
+  //
+  // var inLeft = jQuery.inArray(move, leftTiles); //in furthest col?
 
   var originalMove = move; //move will change
-
   var checkWin = function(color, move) {
-    // console.log("checkWin function Values: " + color + " " + move);
-
-    while (move > 7) { //vertical win check
-      move -= 7; //to access squares on top row
-    } //end while
-    for (var i = move; i < 43; i += 7) { //loop down
-      if (fourInRow(color, move)) {
-        return true;
+    //vertical
+    for (var i = move; i < 43; i += 7) {
+      if ($("#" + move).hasClass("clickedRed")) { //grab by #id
+        redWinner += 1;
+        if (redWinner == 4) {
+          congratulate(color);
+        }
+      } else if ($("#" + move).hasClass("clickedBlue")) {
+        blueWinner += 1;
+        console.log(blueWinner);
+        if (blueWinner == 4) {
+          congratulate(color);
+        }
+      } else {
+        redWinner = 0;
+        blueWinner = 0;
       } //end if statement
-    } //end for loop
+    } //end vertical
 
-    move = originalMove; //reset for horiz win check
+    //horizontal
+    move = originalMove;
+    
+  }
 
-    if (inLeft >= 0) { //arr position starts @ 0
-      if (fourInHoriz(color, move)) {
-        //can check for win if in left position
-        return true;
-      }
-    } else {
-      while (result = jQuery.inArray(move, leftTiles) == -1) {
-        move--;
-      } //end while
-        if (result = jQuery.inArray(move, leftTiles) !== -1) {
-          console.log(move);
-          if (fourInHoriz(color, move)) {
-            return true;
-           }
-         }
-    } return false; //no wins detected
+    // while (move > 7) { //vertical win check
+    //   move -= 7; //to access squares on top row
+    // } //end while
+    // for (var i = move; i < 43; i += 7) { //loop down
+    //   if (fourInRow(color, move)) {
+    //     return true;
+    //   } //end if statement
+    // } //end for loop
+    //
+    // move = originalMove; //reset for horiz win check
+    //
+    // if (inLeft >= 0) { //arr position starts @ 0
+    //   if (fourInHoriz(color, move)) {
+    //     //can check for win if in left position
+    //     return true;
+    //   }
+    // } else {
+    //   while (result = jQuery.inArray(move, leftTiles) == -1) {
+    //     move--;
+    //   } //end while
+    //     if (result = jQuery.inArray(move, leftTiles) !== -1) {
+    //       console.log(move);
+    //       if (fourInHoriz(color, move)) {
+    //         return true;
+    //        }
+    //      }
+    // } return false; //no wins detected
 
-  } //end checkWin
+  // } //end checkWin
 
   var red = 0;
   var blue = 0;
