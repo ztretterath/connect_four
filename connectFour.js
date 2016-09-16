@@ -26,12 +26,12 @@ $(function () {
     1:{6: ""},2:{6: ""},3:{6: ""},4:{6: ""},5:{6: ""},6:{6: ""},7:{6: ""}
   }
 
+  var red = 0; //score board
+  var blue = 0; //score board
   var move = "";//set to colorStore[x][y]
   var redMoveNum = 0; //wins can occur at 4 moves
   var blueMoveNum = 0; //wins can occur at 4 moves
   var clicked = true; //toggles T/F to change players
-  var color = ""; //used for checkWin method - defined below
-
   var left = 0; //horizontal win count
   var right = 0; //horizontal win count
   var down = 0; //vertical win count
@@ -39,17 +39,44 @@ $(function () {
   var checkWin = function(x, y) {
     var originalX = x;
     var originalY = y;
-    var currentColor = move;
-    console.log(currentColor);
-    for (var i = originalX; i > 0; i--)
-      while (colorStore[i][y] == currentColor) {
-        left++;
-        console.log(left);
+    var leftWin = function() {
+      while (originalX > 0) {
+        if (colorStore[originalX][originalY] == move) {
+          left++;
+          console.log(left);
+          console.log(move);
+          if (left == 4) {
+            congratulate(move);
+          }
+        } else {
+          left = 0;
+        }
+        originalX--;
       }
+    }
+    var downWin = function() {
+      while (originalY < 7) {
+        var originalX = x;
+        var originalY = y;
+        if (colorStore[originalX][originalY] == move) {
+          down++;
+          console.log(down);
+          console.log(move);
+          if (down == 4) {
+            congratulate(move);
+          }
+        } else {
+          down = 0;
+        }
+        originalY++;
+      }
+    }
+    leftWin();
+    downWin();
+
   } //end checkWin
 
-  var red = 0;
-  var blue = 0;
+
   var congratulate = function(color) {
     console.log("congratulate function. Values: " + color);
     //test
