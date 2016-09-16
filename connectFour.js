@@ -39,6 +39,8 @@ $(function () {
   var checkWin = function(x, y) {
     var originalX = x;
     var originalY = y;
+
+    //check left
     var leftWin = function() {
       while (originalX > 0) {
         if (colorStore[originalX][originalY] == move) {
@@ -53,22 +55,23 @@ $(function () {
       }
     }
     var downWin = function() {
-      while (originalY < 7) {
-        if (colorStore[originalX][originalY] == move) {
+      x = originalX;
+      y = originalY;
+      while (y < 7 && y > 0 && x > 0) {
+        if (colorStore[x][y] == move) {
           down++;
+          console.log(down);
           if (down == 4) {
             congratulate(move);
           }
         } else {
           down = 0;
         }
-        originalY++;
-        console.log(originalY);
+        y++;
       }
     }
-    leftWin();
     downWin();
-
+    leftWin();
   } //end checkWin
 
 
