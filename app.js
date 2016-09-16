@@ -37,6 +37,7 @@ $(function () {
   var down = 0; //vertical win count
 
   var checkWin = function(x, y) {
+    console.log(move);
     //check left
     var xOne = x;
     var yOne = y;
@@ -136,8 +137,9 @@ $(function () {
 
 //RESET & DIRECTIONS
   $('#reset').on('click', function() {
-    redWinner = 0;
-    blueWinner = 0;
+    left = 0; //horizontal win count
+    right = 0; //horizontal win count
+    down = 0; //vertical win count
     redMoveNum = 0;
     blueMoveNum = 0;
     clicked = true;
