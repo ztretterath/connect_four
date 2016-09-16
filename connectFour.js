@@ -26,41 +26,26 @@ $(function () {
     1:{6: ""},2:{6: ""},3:{6: ""},4:{6: ""},5:{6: ""},6:{6: ""},7:{6: ""}
   }
 
-  var move = "";//where player plays, changes when clicked
+  var move = "";//set to colorStore[x][y]
   var redMoveNum = 0; //wins can occur at 4 moves
   var blueMoveNum = 0; //wins can occur at 4 moves
   var clicked = true; //toggles T/F to change players
   var color = ""; //used for checkWin method - defined below
-  var redWinner = 0; //if reaches 4, red wins
-  var blueWinner = 0; //if reaches 4, blue wins
 
-  var originalMove = move; //move will change
-  var checkWin = function() {
-    for (var c = 7; c > 0; c--) {
-      for (var r = 6; r > 0; r--) {
-        if(colorStore[c][r] == 'clickedRed') {
-          redWinner++;
-          if (redWinner == 4) {
-            congratulate('clickedRed')
-          }
-        } else {
-          redWinner = 0;
-        }
+  var left = 0; //horizontal win count
+  var right = 0; //horizontal win count
+  var down = 0; //vertical win count
+
+  var checkWin = function(x, y) {
+    var originalX = x;
+    var originalY = y;
+    var currentColor = move;
+    console.log(currentColor);
+    for (var i = originalX; i > 0; i--)
+      while (colorStore[i][y] == currentColor) {
+        left++;
+        console.log(left);
       }
-    } //end redWinner for
-    for (var c = 7; c > 0; c--) {
-      for (var r = 6; r > 0; r--) {
-        if(colorStore[c][r] == 'clickedBlue') {
-          blueWinner++;
-          if (blueWinner == 4) {
-            congratulate('clickedBlue')
-          }
-        } else {
-          blueWinner = 0;
-        }
-      }
-    } //end blueWinner for
-    return false;
   } //end checkWin
 
   var red = 0;
@@ -84,14 +69,15 @@ $(function () {
   $('.gameTile').on('click', function() {
     var x = $(this).attr('x');
     var y = $(this).attr('y');
+    // if (colorStore[y] = 6 ||
     if (clicked === true) {
       clicked = false; //change player colors
       colorStore[x][y] = 'clickedRed'
-      console.log(colorStore);
       redMoveNum += 1;
-      $(this).addClass('clickedRed');
+      console.log(redMoveNum);
       color = 'clickedRed';
       move = colorStore[x][y];
+      $(this).addClass('clickedRed');
     } else if (clicked === false) {
       clicked = true; //change player colors
       colorStore[x][y] = 'clickedBlue'
@@ -101,8 +87,8 @@ $(function () {
       move = colorStore[x][y];
       }
 
-    if (redMoveNum == 4 || blueMoveNum == 4) {
-      checkWin();
+    if (redMoveNum >= 4 || blueMoveNum >= 4) {
+      checkWin(x, y);
     }
   }); //end click method
 
