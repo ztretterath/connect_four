@@ -37,14 +37,15 @@ $(function () {
   var down = 0; //vertical win count
 
   var checkWin = function(x, y) {
-    console.log(move);
     //check left
     var xOne = x;
     var yOne = y;
     var leftWin = function() {
       while (xOne > 0) {
+        console.log(left);
         if (colorStore[xOne][yOne] == move) {
           left++;
+          console.log(left);
           if (left == 4) {
             congratulate(move);
           }
@@ -60,9 +61,10 @@ $(function () {
     var yTwo = yOne;
     var downWin = function() {
       while (yTwo < 7 && yTwo > 0 && xTwo > 0) {
+        console.log(down);
         if (colorStore[xTwo][yTwo] == move) {
           down++;
-          console.log(move);
+          console.log(down);
           if (down == 4) {
             congratulate(move);
           }
@@ -78,6 +80,7 @@ $(function () {
     var yThree = yTwo;
     var rightWin = function() {
       while (xThree < 6 && xThree > 0) {
+        console.log(right);
         if (colorStore[xThree][yThree] == move) {
           right++;
           if (right == 4) {
@@ -94,7 +97,6 @@ $(function () {
     leftWin();
     rightWin();
   } //end checkWin
-
 
   var congratulate = function(color) {
     console.log("congratulate function. Values: " + color);
@@ -115,24 +117,32 @@ $(function () {
   $('.gameTile').on('click', function() {
     var x = $(this).attr('x');
     var y = $(this).attr('y');
-    if (clicked === true) {
-      clicked = false; //change player colors
-      colorStore[x][y] = 'clickedRed'
-      redMoveNum += 1;
-      color = 'clickedRed';
-      move = colorStore[x][y];
-      $(this).addClass('clickedRed');
-    } else if (clicked === false) {
-      clicked = true; //change player colors
-      colorStore[x][y] = 'clickedBlue'
-      blueMoveNum += 1;
-      color = 'clickedBlue';
-      move = colorStore[x][y];
-      $(this).addClass('clickedBlue');
+    var aboveY = parseInt(y - 1);
+    var abovePiece = $("[y = '" + aboveY + "']");
+    if (y == 6 || $(this).hasClass('open')) {
+      console.log(abovePiece);
+      if (clicked === true) {
+        clicked = false; //change player colors
+        colorStore[x][y] = 'clickedRed'
+        redMoveNum += 1;
+        color = 'clickedRed';
+        move = colorStore[x][y];
+        abovePiece.addClass('open');
+        $(this).addClass('clickedRed');
+      } else if (clicked === false) {
+        clicked = true; //change player colors
+        colorStore[x][y] = 'clickedBlue'
+        blueMoveNum += 1;
+        color = 'clickedBlue';
+        move = colorStore[x][y];
+        abovePiece.addClass('open');
+        $(this).addClass('clickedBlue');
+        }
+      if (redMoveNum >= 4 || blueMoveNum >= 4) {
+        checkWin(x, y);
       }
-    if (redMoveNum >= 4 || blueMoveNum >= 4) {
-      checkWin(x, y);
     }
+
   }); //end click method
 
 //RESET & DIRECTIONS

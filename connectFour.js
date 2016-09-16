@@ -36,6 +36,8 @@ $(function () {
   var right = 0; //horizontal win count
   var down = 0; //vertical win count
 
+  khjdsafjklhdsjkfh
+
   var checkWin = function(x, y) {
     //check left
     var xOne = x;
