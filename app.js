@@ -47,7 +47,8 @@ $(function () {
           left++;
           console.log(left);
           if (left == 4) {
-            congratulate(move);
+            // congratulate(move);
+            return true;
           }
         } else {
           left = 0;
@@ -66,7 +67,8 @@ $(function () {
           down++;
           console.log(down);
           if (down == 4) {
-            congratulate(move);
+            // congratulate(move);
+            return true;
           }
         } else {
           down = 0;
@@ -84,7 +86,8 @@ $(function () {
         if (colorStore[xThree][yThree] == move) {
           right++;
           if (right == 4) {
-            congratulate(move);
+            // congratulate(move);
+            return true;
           }
         } else {
           right = 0;
@@ -92,10 +95,9 @@ $(function () {
         xThree++;
       }
     } //end check down
-
-    downWin();
-    leftWin();
-    rightWin();
+    downWin(); //call function to check win condition
+    leftWin(); //call function to check win condition
+    rightWin(); //call function to check win condition
   } //end checkWin
 
   var congratulate = function(color) {
@@ -125,7 +127,7 @@ $(function () {
       console.log(abovePiece);
       if (clicked === true) {
         clicked = false; //change player colors
-        colorStore[x][y] = 'clickedRed'
+        colorStore[x][y] = 'clickedRed' //access clicked piece
         redMoveNum += 1;
         color = 'clickedRed';
         move = colorStore[x][y];
@@ -133,7 +135,7 @@ $(function () {
         $(this).addClass('clickedRed');
       } else if (clicked === false) {
         clicked = true; //change player colors
-        colorStore[x][y] = 'clickedBlue'
+        colorStore[x][y] = 'clickedBlue' //access clicked piece
         blueMoveNum += 1;
         color = 'clickedBlue';
         move = colorStore[x][y];
@@ -144,14 +146,13 @@ $(function () {
         checkWin(x, y);
       }
     }
-
   }); //end click method
 
 //RESET & DIRECTIONS
   $('#reset').on('click', function() {
-    left = 0; //horizontal win count
-    right = 0; //horizontal win count
-    down = 0; //vertical win count
+    left = 0; //horizontal win count to 4
+    right = 0; //horizontal win count to 4
+    down = 0; //vertical win count to 4
     redMoveNum = 0;
     blueMoveNum = 0;
     clicked = true;
