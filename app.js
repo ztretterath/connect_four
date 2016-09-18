@@ -37,6 +37,7 @@ $(function () {
   var down = 0; //vertical win count
 
   var checkWin = function(x, y) {
+    var result = false;
     //check left
     var xOne = x;
     var yOne = y;
@@ -48,7 +49,7 @@ $(function () {
           console.log(left);
           if (left == 4) {
             // congratulate(move);
-            return true;
+            result = true;
           }
         } else {
           left = 0;
@@ -68,7 +69,7 @@ $(function () {
           console.log(down);
           if (down == 4) {
             // congratulate(move);
-            return true;
+            result = true;
           }
         } else {
           down = 0;
@@ -87,7 +88,7 @@ $(function () {
           right++;
           if (right == 4) {
             // congratulate(move);
-            return true;
+            result = true;
           }
         } else {
           right = 0;
@@ -95,9 +96,16 @@ $(function () {
         xThree++;
       }
     } //end check down
+    // var downLeftWin
+    // var downRightWin
+
+
     downWin(); //call function to check win condition
     leftWin(); //call function to check win condition
     rightWin(); //call function to check win condition
+    if (result == true) {
+      congratulate(move);
+    }
   } //end checkWin
 
   var congratulate = function(color) {
