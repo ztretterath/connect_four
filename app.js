@@ -35,6 +35,7 @@ $(function () {
   var left = 0; //horizontal win count
   var right = 0; //horizontal win count
   var down = 0; //vertical win count
+  var downLeft = 0;
 
   var checkWin = function(x, y) {
     var result = false;
@@ -48,7 +49,6 @@ $(function () {
           left++;
           console.log(left);
           if (left == 4) {
-            // congratulate(move);
             result = true;
           }
         } else {
@@ -68,7 +68,6 @@ $(function () {
           down++;
           console.log(down);
           if (down == 4) {
-            // congratulate(move);
             result = true;
           }
         } else {
@@ -83,11 +82,9 @@ $(function () {
     var yThree = yTwo;
     var rightWin = function() {
       while (xThree < 6 && xThree > 0) {
-        console.log(right);
         if (colorStore[xThree][yThree] == move) {
           right++;
           if (right == 4) {
-            // congratulate(move);
             result = true;
           }
         } else {
@@ -96,13 +93,33 @@ $(function () {
         xThree++;
       }
     } //end check down
-    // var downLeftWin
-    // var downRightWin
+   //check down left
+    var xFour = xThree;
+    var yFour = yThree;
+    var downLeftWin = function() {
+      while (xFour < 6 && xFour > 0 && yFour > 0 && yFour < 8) {
+        if (colorStore[xThree][yThree] == move) {
+          downLeft++;
+          console.log(downLeft);
+          if (downLeft == 4) {
+            result = true;
+          }
+        } else {
+          downLeft = 0;
+        }
+        xFour--;
+        yFour--;
+      }
+    } //end check down left
+    // var downRightWin =
+    // var upLeftWin =
+    // var upRightWin =
 
 
     downWin(); //call function to check win condition
     leftWin(); //call function to check win condition
     rightWin(); //call function to check win condition
+    downLeftWin();
     if (result == true) {
       congratulate(move);
     }
